@@ -1,0 +1,12 @@
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: Containerfile
+    volumes: 
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    environment:
+      - XDG_RUNTIME_DIR=/tmp=value
+      - WAYLAND_DISPLAY=$WAYLAND_DISPLAY
+      - $XDG_RUNTIME_DIR/$WAYLAND_DISPLAY:/tmp/$WAYLAND_DISPLAY
+      - DISPLAY=$DISPLAY

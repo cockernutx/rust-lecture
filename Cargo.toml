@@ -1,0 +1,24 @@
+[package]
+name = "rust-lecture"
+version = "0.1.0"
+authors = ["Gustavo Lima <gustavo.lima@smi.srv.br>"]
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+serde = { version = "1.0.197", features = ["derive"] }
+futures = "0.3.30"
+dioxus = {  version = "0.6.0-alpha.3", features = ["router", "launch"] }
+markdown = "1.0.0-alpha.21"
+reqwest = {version = "0.12.8", features = ["json"]}
+gloo = "0.11.0"
+tracing = "0.1.40"
+dioxus-logger = "0.5.1"
+manganis = "0.3.0-alpha.3"
+
+
+[features]
+default = []
+web = ["dioxus/web"]
+desktop = ["dioxus/desktop"]
