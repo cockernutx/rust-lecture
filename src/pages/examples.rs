@@ -1,5 +1,5 @@
-use dioxus::prelude::*;
 use crate::Route;
+use dioxus::prelude::*;
 pub mod graph_example;
 #[component]
 pub fn Examples() -> Element {

@@ -15,7 +15,7 @@ pub fn BorrowChecker() -> Element {
     rsx! {
         document::Link {
             rel: "stylesheet",
-            href: asset!("./src/pages/borrow_checker/borrow_checker.css")
+            href: asset!("./src/pages/borrow_checker/borrow_checker.css"),
         }
 
         div {
@@ -131,7 +131,7 @@ pub fn BorrowChecker() -> Element {
         div { class: "mt-4 p-4 flex flex-col items-center justify-center ",
             Link {
                 class: "text-2xl font-semibold text-center btn btn-outline btn-secondary",
-                to: Route::TypeSystem {  },
+                to: Route::TypeSystem {},
                 "Entenda mais sobre o sistemas de tipos do Rust"
             }
         }

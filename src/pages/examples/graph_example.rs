@@ -6,9 +6,10 @@ pub fn GraphExample() -> Element {
     let mut content = use_signal(|| String::new());
     let mut id = use_signal(|| String::new());
     let add_child = move || {
-        graph
-            .write_unchecked()
-            .add_node(content.read_unchecked().clone(), id.read_unchecked().clone());
+        graph.write_unchecked().add_node(
+            content.read_unchecked().clone(),
+            id.read_unchecked().clone(),
+        );
     };
     let relate = move |e: Event<FormData>| {
         let formdata = e.data();

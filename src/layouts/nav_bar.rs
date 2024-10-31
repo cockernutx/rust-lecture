@@ -1,6 +1,6 @@
-use std::fmt::Display;
 use crate::Route;
 use dioxus::prelude::*;
+use std::fmt::Display;
 #[component]
 pub fn NavBar() -> Element {
     rsx! {

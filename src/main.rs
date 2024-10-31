@@ -3,9 +3,15 @@ use dioxus::prelude::*;
 use layouts::nav_bar::NavBar;
 use manganis::CssAssetBuilder;
 use pages::{
-    about_us::AboutUs, conclusion::Conclusion, home::Home, license::License,
-    sources::Sources, examples::{Examples, graph_example::GraphExample},
-    rust_history::RustHistory, borrow_checker::BorrowChecker, type_system::TypeSystem
+    about_us::AboutUs,
+    borrow_checker::BorrowChecker,
+    conclusion::Conclusion,
+    examples::{graph_example::GraphExample, Examples},
+    home::Home,
+    license::License,
+    rust_history::RustHistory,
+    sources::Sources,
+    type_system::TypeSystem,
 };
 mod components;
 mod layouts;
@@ -37,7 +43,7 @@ enum Route {
     GraphExample {},
 }
 fn main() {
-    dioxus_logger::init(tracing::Level::INFO).expect("failed to init logger");
+    dioxus_logger::init(tracing::Level::DEBUG).expect("failed to init logger");
     tracing::info!("starting application on http://localhost:8080");
     launch(App);
 }

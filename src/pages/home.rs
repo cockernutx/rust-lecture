@@ -1,5 +1,5 @@
-use dioxus::prelude::*;
 use crate::Route;
+use dioxus::prelude::*;
 #[derive(PartialEq, Clone, Props)]
 pub struct InfoParagraphProps {
     title: String,

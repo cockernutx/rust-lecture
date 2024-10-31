@@ -8,7 +8,11 @@ pub struct Edge {
 #[allow(dead_code)]
 impl Edge {
     pub fn new(r#in: String, out: String, relation_type: String) -> Self {
-        Self { r#in, out, relation_type }
+        Self {
+            r#in,
+            out,
+            relation_type,
+        }
     }
 }
 #[derive(Debug, Eq, PartialEq, Hash, Clone)]
@@ -42,7 +46,10 @@ impl<T: Clone> Graph<T> {
         }
     }
     pub fn add_node(&mut self, content: T, id: String) -> String {
-        let node = Node { id: id.clone(), content };
+        let node = Node {
+            id: id.clone(),
+            content,
+        };
         self.nodes.push(node);
         id
     }
@@ -52,27 +59,30 @@ impl<T: Clone> Graph<T> {
     pub fn get_by_id(&self, id: String) -> Option<&Node<T>> {
         self.nodes.iter().find(|x| x.id == id)
     }
-    pub fn relate(
-        &mut self,
-        r#in: String,
-        out: String,
-        relation_type: String,
-    ) -> Result<()> {
+    pub fn relate(&mut self, r#in: String, out: String, relation_type: String) -> Result<()> {
         let Some(_) = self.get_by_id(r#in.clone()) else {
-            return Err(Error::NodeNotFound(r#in))
+            return Err(Error::NodeNotFound(r#in));
         };
         let Some(_) = self.get_by_id(out.clone()) else {
-            return Err(Error::NodeNotFound(out))
+            return Err(Error::NodeNotFound(out));
         };
-        let edge = Edge { r#in, out, relation_type };
+        let edge = Edge {
+            r#in,
+            out,
+            relation_type,
+        };
         self.edges.insert(edge);
         Ok(())
     }
     pub fn get_edges(&self, node: String) -> Result<Vec<&Edge>> {
         let Some(node) = self.get_by_id(node.clone()) else {
-            return Err(Error::NodeNotFound(node))
+            return Err(Error::NodeNotFound(node));
         };
-        Ok(self.edges.iter().filter(|x| x.r#in == node.id || x.out == node.id).collect())
+        Ok(self
+            .edges
+            .iter()
+            .filter(|x| x.r#in == node.id || x.out == node.id)
+            .collect())
     }
 }
 impl<T: Clone> IntoIterator for Graph<T> {
