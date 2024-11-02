@@ -1,6 +1,7 @@
 use dioxus::document::eval;
 use dioxus::prelude::*;
 use gloo::utils::window;
+use crate::Route;
 
 // Only here to validate the example when compiling
 pub(self) mod example;
@@ -125,29 +126,58 @@ pub fn TypeSystem() -> Element {
                                     "Rust tem um sistema de referência que impede o uso incorreto de dados. Isso é feito através das regras de empréstimo (borrowing):"
                                 }
                                 ul { class: "list-disc ",
+                                    li { "Referências podem ser imutáveis (&T) ou mutáveis (&mut T)." }
                                     li {
-                                        "Referências podem ser imutáveis (&T) ou mutáveis (&mut T)."
+                                        "Apenas uma referência mutável pode existir por vez, mas múltiplas referências imutáveis são permitidas, garantindo segurança contra condições de corrida."
                                     }
-                                    li { "Apenas uma referência mutável pode existir por vez, mas múltiplas referências imutáveis são permitidas, garantindo segurança contra condições de corrida." }
                                     li {
                                         "O verificador de empréstimos (borrow checker) do Rust assegura que essas regras sejam seguidas durante a compilação, prevenindo acessos simultâneos ou inválidos a dados."
                                     }
-                          
+                                
                                 }
                             }
                         }
                     }
                 }
                 div { class: "carousel-item w-full", id: "item3",
-                    img {
-                        src: "https://img.daisyui.com/images/stock/photo-1414694762283-acccc27bca85.webp",
-                        class: "w-full",
+                    div { class: "hero bg-base-200  rounded-box",
+                        div { class: "hero-content flex-col lg:flex-row",
+                            img {
+                                src: asset!("./src/pages/type_system/references_and_borrows.webp"),
+                                class: "max-w-sm rounded-lg shadow-2xl",
+                            }
+                            div {
+                                h1 { class: "text-5xl font-bold", "Enums e Pattern Matching" }
+                                p { class: "py-6",
+                                    "Rust permite criar Enums que podem representar diferentes estados e simplificam a modelagem de dados complexos. Um exemplo comum é o uso do Option e do Result, que são enums para valores opcionais e para tratamento de erros. Junto com o pattern matching, esses enums permitem construir código seguro e sem a necessidade de null."
+                                }
+                            
+                            }
+                        }
                     }
                 }
                 div { class: "carousel-item w-full", id: "item4",
-                    img {
-                        src: "https://img.daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.webp",
-                        class: "w-full",
+                    div { class: "hero bg-base-200  rounded-box",
+                        div { class: "hero-content flex-col lg:flex-row",
+                            img {
+                                src: asset!("./src/pages/type_system/references_and_borrows.webp"),
+                                class: "max-w-sm rounded-lg shadow-2xl",
+                            }
+                            div {
+                                h1 { class: "text-5xl font-bold", "Traits" }
+                                p { class: "py-6",
+                                    "Rust usa traits para definir comportamento comum. Uma trait é como uma interface em outras linguagens, mas com diferenças:"
+                                }
+                                ul { class: "list-disc",
+                                    li {
+                                        "Elas definem um conjunto de métodos que os tipos podem implementar."
+                                    }
+                                    li {
+                                        "Isso permite polimorfismo no Rust e substitui o uso de herança, promovendo a composição ao invés da herança."
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -156,6 +186,16 @@ pub fn TypeSystem() -> Element {
                 a { href: "#item2", class: "btn btn-xs", "2" }
                 a { href: "#item3", class: "btn btn-xs", "3" }
                 a { href: "#item4", class: "btn btn-xs", "4" }
+            }
+        }
+        div { class: "mt-12",
+            h1 { class: "text-center text-5xl font-figtree font-extrabold", "Porque esse sistema?" }
+        }
+        div { class: "mt-6",
+            p { class: " p-4 text-xl font-semibold",
+                "O Rust tem um sistema de tipos extremamente complexo, isto se é devido a seu modelo e paradigma de validação de lifetimes e borrow checking. Rust foi criado para facilitar o gerenciamento de memoria e impedir bugs comuns que aconteciam com C e C++, você pode ler mais sobre isso lendo a nossa secção sobre a "
+                Link { to: Route::RustHistory {}, class: "link link-accent", "historia da linguagem" }
+                "."
             }
         }
     }

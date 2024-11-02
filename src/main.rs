@@ -48,7 +48,7 @@ fn main() {
     launch(App);
 }
 fn App() -> Element {
-    const TAILWIND_CSS: &str = asset!(file("./target/tailwind.css"));
+    const TAILWIND_CSS: &str = asset!("/target/tailwind.css");
     rsx! {
         document::Link { rel: "preconnect", href: "https://fonts.googleapis.com" }
         document::Link {

@@ -46,6 +46,9 @@ pub fn NavBar() -> Element {
                                             Link { to: Route::BorrowChecker {}, "Borrow checker" }
                                         }
                                         li {
+                                            Link { to: Route::TypeSystem {}, "Rust history" }
+                                        }
+                                        li {
                                             Link { to: Route::RustHistory {}, "Rust history" }
                                         }
                                     }
