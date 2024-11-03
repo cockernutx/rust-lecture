@@ -18,10 +18,11 @@ jobs:
       - uses: actions/checkout@v4
       - name: Add toolchain
         run: rustup target add wasm32-unknown-unknown
-      - name: Install Dioxus-CLI
-        shell: bash
-        run: cargo install dioxus-cli --version 0.6.0-alpha.4
-      - uses: Swatinem/rust-cache@v2
+      - name: Install cargo-hack from crates.io
+        uses: baptiste0928/cargo-install@v3
+        with:
+          crate: dioxus-cli
+          version: '0.6.0-alpha.4' # You can specify any semver range
       - name: Install npm deps
         run: npm i
       - name: Build
