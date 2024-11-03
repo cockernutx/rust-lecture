@@ -21,7 +21,7 @@ pub fn TypeSystem() -> Element {
 
     use_memo(move || {
         if let Some(Ok(_)) = &*fetch_example.read() {
-            tracing::debug!("highlighting code");
+
             eval(
                 r#"
                     setTimeout(() => {hljs.highlightAll();}, 50);
@@ -133,7 +133,6 @@ pub fn TypeSystem() -> Element {
                                     li {
                                         "O verificador de empréstimos (borrow checker) do Rust assegura que essas regras sejam seguidas durante a compilação, prevenindo acessos simultâneos ou inválidos a dados."
                                     }
-                                
                                 }
                             }
                         }
@@ -151,7 +150,6 @@ pub fn TypeSystem() -> Element {
                                 p { class: "py-6",
                                     "Rust permite criar Enums que podem representar diferentes estados e simplificam a modelagem de dados complexos. Um exemplo comum é o uso do Option e do Result, que são enums para valores opcionais e para tratamento de erros. Junto com o pattern matching, esses enums permitem construir código seguro e sem a necessidade de null."
                                 }
-                            
                             }
                         }
                     }
