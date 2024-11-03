@@ -9,13 +9,13 @@ edition = "2021"
 [dependencies]
 serde = { version = "1.0.197", features = ["derive"] }
 futures = "0.3.30"
-dioxus = {  version = "0.6.0-alpha.3", features = ["router", "launch"] }
+dioxus = {  version = "0.6.0-alpha.4", features = ["router", "launch"] }
 markdown = "1.0.0-alpha.21"
 reqwest = {version = "0.12.8", features = ["json"]}
 gloo = {version = "0.11.0", features = ["futures"]}
 tracing = "0.1.40"
 dioxus-logger = "0.5.1"
-manganis = "0.3.0-alpha.3"
+manganis = "0.6.0-alpha.4"
 
 
 [features]
