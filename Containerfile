@@ -10,7 +10,7 @@ RUN apt install -y nodejs npm clang libc++-dev libclang-dev libwebkit2gtk-4.1-de
   libssl-dev \
   libayatana-appindicator3-dev \
   librsvg2-dev
-RUN apt install python3
+
 RUN rustup target add wasm32-unknown-unknown
 
 RUN cargo install dioxus-cli --version 0.6.0-alpha.3
