@@ -26,7 +26,7 @@ jobs:
       - name: Install npm deps
         run: npm i
       - name: Build
-        run: dx build --platform web --release && cp -r ./target/dx/rust-lecture/release/web/public ./dist && sed -i 's//.///rust-lecture//g' ./dist/index.html && ./dist/index.html && cp ./dist/index.html ./dist/404.html
+        run: dx build --platform web --release && cp -r ./target/dx/rust-lecture/release/web/public ./dist && sed -i 's@/./@/rust-lecture/@g' ./dist/index.html && ./dist/index.html && cp ./dist/index.html ./dist/404.html
       - name: Upload static files as artifact
         id: deployment
         uses: actions/upload-pages-artifact@v3
