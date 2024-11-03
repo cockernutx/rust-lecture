@@ -2,7 +2,7 @@ use dioxus::prelude::*;
 use gloo::utils::window;
 #[component]
 pub fn Sources() -> Element {
-    const SOURCES: &str = asset!("./src/pages/sources/sources.json");
+    const SOURCES: Asset = asset!("./src/pages/sources/sources.json");
     let sources_fetch = use_resource(move || async move {
         let Ok(base_path) = window().location().origin() else {
             return Err("could not get base path".to_string());

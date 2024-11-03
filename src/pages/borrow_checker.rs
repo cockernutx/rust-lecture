@@ -2,9 +2,9 @@ use crate::Route;
 use dioxus::prelude::*;
 #[component]
 pub fn BorrowChecker() -> Element {
-    const BORROW_CHECKER_REPRESENTATION: manganis::ImageAsset = manganis::mg!(image(
+    const BORROW_CHECKER_REPRESENTATION: manganis::Asset = asset!(
         "./src/pages/borrow_checker/borrow_checker_representation.webp"
-    ));
+    );
     let move_to_id = |id: &str| {
         let document = gloo::utils::document();
         let el = document.get_element_by_id(&id);

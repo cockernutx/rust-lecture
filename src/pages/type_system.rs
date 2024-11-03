@@ -8,7 +8,7 @@ pub(self) mod example;
 
 #[component]
 pub fn TypeSystem() -> Element {
-    const CODE_EXAMPLE: &str = asset!("./src/pages/type_system/example.rs");
+    const CODE_EXAMPLE: Asset = asset!("./src/pages/type_system/example.rs");
 
     let fetch_example: Resource<Result<String, reqwest::Error>> =
         use_resource(move || async move {

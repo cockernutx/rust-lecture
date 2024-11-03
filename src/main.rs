@@ -1,7 +1,6 @@
 #![allow(non_snake_case)]
 use dioxus::prelude::*;
 use layouts::nav_bar::NavBar;
-use manganis::CssAssetBuilder;
 use pages::{
     about_us::AboutUs,
     borrow_checker::BorrowChecker,
@@ -48,7 +47,7 @@ fn main() {
     launch(App);
 }
 fn App() -> Element {
-    const TAILWIND_CSS: &str = asset!("/target/tailwind.css");
+    const TAILWIND_CSS: Asset = asset!("/target/tailwind.css");
     rsx! {
         document::Link { rel: "preconnect", href: "https://fonts.googleapis.com" }
         document::Link {
