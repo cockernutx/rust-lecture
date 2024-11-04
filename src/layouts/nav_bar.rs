@@ -34,6 +34,13 @@ pub fn NavBar() -> Element {
                                     "About us"
                                 }
                             }
+                            li {
+                                Link {
+                                    to: Route::Sources {},
+                                    class: "btn btn-ghost ",
+                                    "Source"
+                                }
+                            }
                         }
                     }
                     div { class: "flex-none",

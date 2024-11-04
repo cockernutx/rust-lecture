@@ -1,23 +1,15 @@
 use dioxus::prelude::*;
-use gloo::utils::window;
+
+use crate::get_asset::{get_asset, GetAssetError};
+
 #[component]
 pub fn Sources() -> Element {
-    const SOURCES: Asset = asset!("./src/pages/sources/sources.json");
+    const SOURCES: Asset = asset!("/src/pages/sources/sources.json");
     let sources_fetch = use_resource(move || async move {
-        let Ok(base_path) = window().location().origin() else {
-            return Err("could not get base path".to_string());
-        };
-        let path = format!("{base_path}{SOURCES}");
-        let req = match reqwest::get(path).await {
-            Ok(r) => r,
-            Err(why) => {
-                tracing::error!("{:?}", why);
-                return Err(why.to_string());
-            }
-        };
-        let vec: Vec<String> = match req.json().await {
-            Ok(j) => j,
-            Err(why) => return Err(why.to_string()),
+        let text = get_asset(&SOURCES).await?;
+        let vec: Vec<String> = match serde_json::from_str(&text) {
+            Ok(v) => v,
+            Err(why) => return Err(GetAssetError::RequestError(why.to_string()))
         };
         Ok(vec)
     });

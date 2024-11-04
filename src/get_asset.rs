@@ -47,7 +47,7 @@ pub async fn get_asset(asset: &Asset) -> Result<String, GetAssetError> {
         let req = reqwest::get(url).await?;
         let text = req.text().await?;
         Ok(text)
-    } else if cfg!(feature = "desktop") {
+    } else if cfg!(feature = "desktop"){
         let path = asset.local;
         let text = fs::read_to_string(path)?;
         Ok(text)

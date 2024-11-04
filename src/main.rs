@@ -1,13 +1,13 @@
 #![allow(non_snake_case)]
 
-use dioxus::document::eval;
+
 use dioxus::prelude::*;
 use layouts::nav_bar::NavBar;
 use pages::{
     about_us::AboutUs,
     borrow_checker::BorrowChecker,
     conclusion::Conclusion,
-    examples::{graph_example::GraphExample, Examples},
+    examples::{image_manipulation::ImageManipulation, Examples},
     home::Home,
     license::License,
     rust_history::RustHistory,
@@ -42,8 +42,8 @@ enum Route {
     #[nest("/examples")]
     #[route("/")]
     Examples {},
-    #[route("/graph")]
-    GraphExample {},
+    #[route("/image_manipulation")]
+    ImageManipulation {}
 }
 fn main() {
     dioxus_logger::init(tracing::Level::DEBUG).expect("failed to init logger");

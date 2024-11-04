@@ -1,12 +1,21 @@
+pub mod image_manipulation;
+
 use crate::Route;
 use dioxus::prelude::*;
-pub mod graph_example;
+
 #[component]
 pub fn Examples() -> Element {
     rsx! {
         document::Title { "Exemplos" }
-        div { class: "p-2",
-            Link { to: Route::GraphExample {}, "Graph" }
+        ul { class: "menu rounded-box w-56",
+            li {
+                h2 { class: "menu-title", "Examples" }
+                ul {
+                    li {
+                        Link { to: Route::ImageManipulation {}, "Image manipulation" }
+                    }
+                }
+            }
         }
     }
 }
