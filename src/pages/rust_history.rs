@@ -2,6 +2,9 @@ use dioxus::prelude::*;
 #[component]
 pub fn RustHistory() -> Element {
     rsx! {
+        h1 { class: "text-6xl text-extrabold text-center",
+            "A Hístoria do Rust"
+        }
         div { class: "p-2",
             ul { class: "timeline timeline-snap-icon max-md:timeline-compact timeline-vertical",
                 li {
