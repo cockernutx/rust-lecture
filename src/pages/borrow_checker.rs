@@ -1,21 +1,18 @@
+
+
 use crate::Route;
 use dioxus::prelude::*;
+
 #[component]
 pub fn BorrowChecker() -> Element {
     const BORROW_CHECKER_REPRESENTATION: manganis::Asset = asset!(
-        "./src/pages/borrow_checker/borrow_checker_representation.webp"
+        "/src/pages/borrow_checker/borrow_checker_representation.webp"
     );
-    let move_to_id = |id: &str| {
-        let document = gloo::utils::document();
-        let el = document.get_element_by_id(&id);
-        if let Some(el) = el {
-            el.scroll_into_view();
-        }
-    };
+ 
     rsx! {
         document::Link {
             rel: "stylesheet",
-            href: asset!("./src/pages/borrow_checker/borrow_checker.css"),
+            href: asset!("/src/pages/borrow_checker/borrow_checker.css"),
         }
 
         div {
@@ -30,9 +27,9 @@ pub fn BorrowChecker() -> Element {
                     p { class: "mb-5",
                         "O borrow checker é uma das funções mais importandes do Rust, todo o sistema de tipagem e paradigma da linguagem orbita em torno dele."
                     }
-                    button {
+                    Link {
                         class: "btn btn-primary",
-                        onclick: move |_| move_to_id("what_is_the_borrow_checker"),
+                        to: "#what_is_the_borrow_checker",
                         "Continuar"
                     }
                 }

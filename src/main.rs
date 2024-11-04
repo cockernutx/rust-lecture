@@ -1,4 +1,6 @@
 #![allow(non_snake_case)]
+
+use dioxus::document::eval;
 use dioxus::prelude::*;
 use layouts::nav_bar::NavBar;
 use pages::{
@@ -15,6 +17,8 @@ use pages::{
 mod components;
 mod layouts;
 mod pages;
+mod get_asset;
+
 #[derive(Clone, Routable, Debug, PartialEq, serde::Serialize, serde::Deserialize)]
 #[rustfmt::skip]
 enum Route {
@@ -46,7 +50,12 @@ fn main() {
     tracing::info!("starting application on http://localhost:8080");
     launch(App);
 }
+
+
+
 fn App() -> Element {
+
+
     const TAILWIND_CSS: Asset = asset!("/target/tailwind.css");
     rsx! {
         document::Link { rel: "preconnect", href: "https://fonts.googleapis.com" }

@@ -1,6 +1,7 @@
 use dioxus::document::eval;
 use dioxus::prelude::*;
 use gloo::utils::window;
+use crate::get_asset::{get_asset, GetAssetError};
 use crate::Route;
 
 // Only here to validate the example when compiling
@@ -8,13 +9,12 @@ pub(self) mod example;
 
 #[component]
 pub fn TypeSystem() -> Element {
-    const CODE_EXAMPLE: Asset = asset!("./src/pages/type_system/example.rs");
+    const CODE_EXAMPLE: Asset = asset!("/src/pages/type_system/example.rs");
 
-    let fetch_example: Resource<Result<String, reqwest::Error>> =
+    let fetch_example: Resource<Result<String, GetAssetError>> =
         use_resource(move || async move {
-            let url = format!("{}{}", window().location().origin().unwrap(), CODE_EXAMPLE);
-            let req = reqwest::get(url).await?;
-            let text = req.text().await?;
+    
+            let text = get_asset(&CODE_EXAMPLE).await?;
 
             Ok(text)
         });
@@ -89,7 +89,7 @@ pub fn TypeSystem() -> Element {
                     div { class: "hero bg-base-200  rounded-box",
                         div { class: "hero-content flex-col lg:flex-row",
                             img {
-                                src: asset!("./src/pages/type_system/primitive_types.webp"),
+                                src: asset!("/src/pages/type_system/primitive_types.webp"),
                                 class: "max-w-sm rounded-lg shadow-2xl",
                             }
                             div {
@@ -117,7 +117,7 @@ pub fn TypeSystem() -> Element {
                     div { class: "hero bg-base-200  rounded-box",
                         div { class: "hero-content flex-col lg:flex-row",
                             img {
-                                src: asset!("./src/pages/type_system/references_and_borrows.webp"),
+                                src: asset!("/src/pages/type_system/references_and_borrows.webp"),
                                 class: "max-w-sm rounded-lg shadow-2xl",
                             }
                             div {
@@ -142,7 +142,7 @@ pub fn TypeSystem() -> Element {
                     div { class: "hero bg-base-200  rounded-box",
                         div { class: "hero-content flex-col lg:flex-row",
                             img {
-                                src: asset!("./src/pages/type_system/references_and_borrows.webp"),
+                                src: asset!("/src/pages/type_system/references_and_borrows.webp"),
                                 class: "max-w-sm rounded-lg shadow-2xl",
                             }
                             div {
@@ -158,7 +158,7 @@ pub fn TypeSystem() -> Element {
                     div { class: "hero bg-base-200  rounded-box",
                         div { class: "hero-content flex-col lg:flex-row",
                             img {
-                                src: asset!("./src/pages/type_system/references_and_borrows.webp"),
+                                src: asset!("/src/pages/type_system/references_and_borrows.webp"),
                                 class: "max-w-sm rounded-lg shadow-2xl",
                             }
                             div {
