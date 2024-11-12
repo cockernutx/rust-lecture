@@ -44,7 +44,17 @@ pub fn ImageManipulation() -> Element {
         }
     };
 
-  
+    let base_64_src = use_resource(move || async move {
+        if let Some(image) = &*image_data.read_unchecked() {
+            let mut buf = Cursor::new(vec![]);
+            
+            image.write_to(&mut buf, Png).unwrap();
+
+            return Some(format!("data:image/png;base64,{}", general_purpose::STANDARD.encode(buf.get_ref())))
+        }
+        
+        None
+    });
     
     rsx! {
         div { class: "p-6",
@@ -91,7 +101,7 @@ pub fn ImageManipulation() -> Element {
                         }
                         button {
                             class: "btn btn-neutral col-span-4",
-                            onclick: move |_| blur_image(),
+                            onclick: move |_| async move {blur_image().await},
                             "Blur image"
                         }
                     }
