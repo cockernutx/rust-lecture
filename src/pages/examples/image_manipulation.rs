@@ -44,17 +44,7 @@ pub fn ImageManipulation() -> Element {
         }
     };
 
-    let base_64_src = use_resource(move || async move {
-        if let Some(image) = &*image_data.read_unchecked() {
-            let mut buf = Cursor::new(vec![]);
-            
-            image.write_to(&mut buf, Png).unwrap();
-
-            return Some(format!("data:image/png;base64,{}", general_purpose::STANDARD.encode(buf.get_ref())))
-        }
-        
-        None
-    });
+  
     
     rsx! {
         div { class: "p-6",
@@ -106,16 +96,8 @@ pub fn ImageManipulation() -> Element {
                         }
                     }
                 }
-                div { class: "mt-6 p-2",
-                    div { class: "diff aspect-[1/1] rounded-box  w-96",
-                        div { class: "diff-item-1",
-                            img { src: base_64, alt: "daisy" }
-                        }
-                        div { class: "diff-item-2",
-                            img { src: original_image_src, alt: "daisy" }
-                        }
-                        div { class: "diff-resizer" }
-                    }
+                div { class: "mt-6 p-2 rounded-box",
+                    img { src: base_64 }
                 }
             }
         }

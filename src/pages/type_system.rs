@@ -30,6 +30,15 @@ pub fn TypeSystem() -> Element {
         }
     });
 
+    let slide = move |id: &str| {
+        let ev = eval(r#"
+            let id = await dioxus.recv();
+            console.log(id);
+            document.getElementById(id).scrollIntoView();
+        "#);
+        ev.send(id).unwrap();
+    };
+
     rsx! {
         document::Link {
             rel: "stylesheet",
@@ -142,7 +151,7 @@ pub fn TypeSystem() -> Element {
                     div { class: "hero bg-base-200  rounded-box",
                         div { class: "hero-content flex-col lg:flex-row",
                             img {
-                                src: asset!("/src/pages/type_system/references_and_borrows.webp"),
+                                src: asset!("/src/pages/type_system/enums_and_pattern_matching.webp"),
                                 class: "max-w-sm rounded-lg shadow-2xl",
                             }
                             div {
@@ -158,7 +167,7 @@ pub fn TypeSystem() -> Element {
                     div { class: "hero bg-base-200  rounded-box",
                         div { class: "hero-content flex-col lg:flex-row",
                             img {
-                                src: asset!("/src/pages/type_system/references_and_borrows.webp"),
+                                src: asset!("/src/pages/type_system/traits.webp"),
                                 class: "max-w-sm rounded-lg shadow-2xl",
                             }
                             div {
@@ -180,10 +189,10 @@ pub fn TypeSystem() -> Element {
                 }
             }
             div { class: "flex w-full justify-center gap-2 py-2",
-                a { href: "#item1", class: "btn btn-xs", "1" }
-                a { href: "#item2", class: "btn btn-xs", "2" }
-                a { href: "#item3", class: "btn btn-xs", "3" }
-                a { href: "#item4", class: "btn btn-xs", "4" }
+                button { onclick: move |_| slide("item1"), class: "btn btn-xs", "1" }
+                button { onclick: move |_| slide("item2"), class: "btn btn-xs", "2" }
+                button { onclick: move |_| slide("item3"), class: "btn btn-xs", "3" }
+                button { onclick: move |_| slide("item4"), class: "btn btn-xs", "4" }
             }
         }
         div { class: "mt-12",

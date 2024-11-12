@@ -1,5 +1,4 @@
-
-
+use dioxus::document::eval;
 use crate::Route;
 use dioxus::prelude::*;
 
@@ -9,6 +8,15 @@ pub fn BorrowChecker() -> Element {
         "/src/pages/borrow_checker/borrow_checker_representation.webp"
     );
  
+    let slide = move |id: &str| {
+        let ev = eval(r#"
+            let id = await dioxus.recv();
+            console.log(id);
+            document.getElementById(id).scrollIntoView();
+        "#);
+        ev.send(id).unwrap();
+    };
+    
     rsx! {
         document::Link {
             rel: "stylesheet",
@@ -27,9 +35,9 @@ pub fn BorrowChecker() -> Element {
                     p { class: "mb-5",
                         "O borrow checker é uma das funções mais importandes do Rust, todo o sistema de tipagem e paradigma da linguagem orbita em torno dele."
                     }
-                    Link {
+                    button {
                         class: "btn btn-primary",
-                        to: "#what_is_the_borrow_checker",
+                        onclick: move |_| slide("what_is_the_borrow_checker"),
                         "Continuar"
                     }
                 }
